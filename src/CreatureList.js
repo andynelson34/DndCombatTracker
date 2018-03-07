@@ -15,7 +15,9 @@ class CreatureList extends React.Component {
 
   // Displays a creature's info as an editable/deletable "card" in the list
   cardifyCreature(creature) {
-    return <CreatureCard key={creature.name} init={creature.init} name={creature.name} hp={creature.hp} isCurrent={creature.isCurrent} changeStat={this.changeStat} delete={this.delete}/>;
+    return (
+      <CreatureCard key={creature.name} init={creature.init} name={creature.name} hp={creature.hp} isCurrent={creature.isCurrent} changeStat={this.changeStat} delete={this.delete}/>
+    );
   }
 
   // Sort function for descending init order

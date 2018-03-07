@@ -105,7 +105,7 @@ class Encounter extends React.Component {
     if (toBeDeleted.isCurrent && creatureArr.length > 1) {
       this.advanceTurn();
     }
-    
+
     creatureArr.splice(creatureArr.indexOf(toBeDeleted), 1);
     this.setState({
       creatures: creatureArr
@@ -167,7 +167,6 @@ class Encounter extends React.Component {
           <button type="submit">add</button>
         </form>
         <CreatureList creatures={this.state.creatures} changeStat={this.changeCreatureStat} delete={this.deleteCreature}/>
-        <br/>
         <button ref={(a) => this._advanceButton = a} onClick={this.advanceTurn}>advance turn</button>
         <br/>
         <br/>

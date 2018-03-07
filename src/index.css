@@ -13,7 +13,15 @@ body {
 }
 
 .creature-card {
-	padding: 5px;
+	margin: 8px;
+}
+
+.creature-name-label {
+	font-weight: bold;
+}
+
+.creature-data-fields {
+	padding-top: 2px;
 }
 
 .stat-label {
