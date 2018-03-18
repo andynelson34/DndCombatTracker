@@ -94,6 +94,13 @@ class Encounter extends React.Component {
     this.setState({
       creatures: creatureArr
     });
+
+    // If we're dropping the init of the current player below the init of the creature below it in the order (not counting wraparound),
+    // advance the turn to that creature, since this is a Delay action
+    var initString = "init";
+    if ((this.curPlayer === name) && (stat === initString) && (index < creatureArr.length - 1) && (toBeChanged[initString] < creatureArr[index + 1][initString])) {
+      this.advanceTurn();
+    }
   }
 
   // Removes a creature from the combat list
@@ -116,7 +123,7 @@ class Encounter extends React.Component {
   advanceTurn() {
     var creatureArr = this.state.creatures;
 
-    if (creatureArr.length == 0) {
+    if (creatureArr.length === 0) {
       // Display error message if there are no creatures on the list
       alert("Please add at least one creature before you advance the turn");
       this._nameInput.focus();
@@ -139,7 +146,7 @@ class Encounter extends React.Component {
       curIdx = creatureArr.indexOf(creatureArr.find(function (creature) { return creature.name === curName; }));
       creatureArr[curIdx].isCurrent = false;
       curIdx = (curIdx + 1) % this.state.creatures.length;
-      if (curIdx == 0) {
+      if (curIdx === 0) {
         // Increment round count if we're back to the top of the order
         tempTime++;
       }
@@ -151,8 +158,6 @@ class Encounter extends React.Component {
       creatures: creatureArr,
       time: tempTime
     });
-
-    this._advanceButton.focus();
   }
 
   render() {
